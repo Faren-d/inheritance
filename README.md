@@ -1,47 +1,36 @@
 # Basic Inheritance:
 Inheritance is a way to create a new class based on an existing class. The new class (child) inherits attributes and methods from the existing class (parent).
-
+## child, subclass, or derived class can add new attributes and methods or modify existing ones inherited from the parent, super class, or base class.
 Example:
 ```bash
-class Animal:
-    def speak(self):
-        print("Animal makes a sound")
-
-class Dog(Animal):
+class Car(Vehicle): # Car is the derived class that inherits from Vehicle
     pass
-
-dog = Dog()
-dog.speak()  # Output: Animal makes a sound
+my_car = Car("BMW", "X4", 2024) # Creating an instance of Car
+my_car.display_info()
 ```
 ## Adding New Methods:
 Child classes can add their own methods in addition to inherited ones.
-```bash
-class Animal:
-    def speak(self):
-        print("Animal makes a sound")
 
-class Dog(Animal):
-    def wag_tail(self):
-        print("Dog wags its tail")
-
-dog = Dog()
-dog.speak()    # Output: Animal makes a sound
-dog.wag_tail() # Output: Dog wags its tail
-```
-## Method Overriding:
+## Method Adding and Overriding:
 Child classes can provide their own implementation of methods inherited from the parent class.
 
 ```bash
-class Animal:
-    def speak(self):
-        print("Animal makes a sound")
+class Car(Vehicle):
+    def __init__(self, make, model, year, trunk_capacity):
+        super().__init__(make, model, year) # Calls the __init__ of Vehicle
+        self.trunk_capacity = trunk_capacity # New attribute specific to Car
 
-class Dog(Animal):
-    def speak(self):
-        print("Dog barks")
+    def display_car_info(self):
+        print(f"{self.year} {self.make} {self.model} with trunk capacity:{self.trunk_capacity}")
+    
+    # Overriding an inherited method
+    def diplay_info(self):
+        print(f"This is a {self.year} {self.make} {self.model}.")
 
-dog = Dog()
-dog.speak()  # Output: Dog barks
+# Creating an instance of Car and using its methods
+my_car = Car("BMW", "X6", 2025, 500)
+
+my_car.display_car_info()
 ```
 ## Using super():
 The super() function allows you to call methods from the parent class within the child class.
